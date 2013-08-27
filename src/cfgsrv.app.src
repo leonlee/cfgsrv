@@ -1,11 +1,11 @@
 {application, cfgsrv, [
-	{description, ""},
-	{vsn, git},
-	{registered, []},
-	{applications, [
-		kernel,
-		stdlib
-	]},
-	{mod, {cfgsrv, []}},
-	{env, []}
+    {description, ""},
+    {vsn, "1.0"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {mod, {cfgsrv_app, []}},
+    {env, []}
 ]}.

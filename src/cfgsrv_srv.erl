@@ -17,7 +17,7 @@
 	start_link/0, start_link/1
 ]).
 
--define(SERVER, ?MODULE).
+-define(SERVER, cfg_server).
 -define(DEFAULT_CONFIG_PATH, "priv/config").
 
 -record(state, {
@@ -35,7 +35,7 @@ start_link() ->
 
 
 start_link(Path) ->
-	gen_server:start_link({local, ?SERVER}, ?MODULE, Path, []).
+	gen_server:start_link({global, ?SERVER}, ?MODULE, Path, []).
 
 %% ===================================================================
 %% Gen_server callbacks

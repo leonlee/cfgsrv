@@ -1,6 +1,12 @@
 .eunit
 deps
-ebin
 *.o
 *.beam
 *.plt
+erl_crash.dump
+.idea
+*.iml
+*.ipr
+ebin
+log
+out/
