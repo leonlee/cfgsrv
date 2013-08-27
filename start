@@ -1,1 +1,1 @@
-erl -pa ebin deps/*/ebin -s cfgsrv_app
+erl -sname cfg_node@localhost -setcookie 'xorxor' -pa ebin deps/*/ebin -s cfgsrv_app
