@@ -16,8 +16,14 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    cfgsrv_sup:start_link().
-
+    case cfgsrv_sup:start_link() of
+        {ok, Pid} ->
+            io:format("Config server was started: ~p \n", [node()]),
+            {ok, Pid};
+        Other ->
+            io:format("Can not start config server: ~p \n", [Other]),
+            {false, Other}
+    end.
 stop(_State) ->
     ok.
 

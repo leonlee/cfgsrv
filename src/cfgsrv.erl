@@ -21,7 +21,7 @@ get(Path, Key) ->
 
 
 get(Path, Key, Default) ->
-    gen_server:call(?SERVER, {get, Path, Key, Default}).
+    {ok, gen_server:call(?SERVER, {get, Path, Key, Default})}.
 
 
 get_multiple(Path, Keys) ->
@@ -50,11 +50,12 @@ test() -> gen_server:call(?SERVER, test).
 
 %% This is just a wrapper. Maybe later I will implement it on lower level as gen_server callback
 get_multiple(_Path, [], Results) ->
-    lists:reverse(Results);
+    {ok, lists:reverse(Results)};
 
 get_multiple(Path, [Key | Keys], Results) ->
     {Key2, Default} = if
         is_tuple(Key) -> Key;
         true -> {Key, undefined}
     end,
-    get_multiple(Path, Keys, [get(Path, Key2, Default) | Results]).
+    {ok, Value} = get(Path, Key2, Default),
+    get_multiple(Path, Keys, [Value | Results]).
